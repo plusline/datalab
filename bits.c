@@ -403,7 +403,7 @@ int bitReverse(int x)
  */
 int bitXor(int x, int y)
 {
-    return 42;
+    return (~x & y) | (x & ~y);
 }
 
 /*
