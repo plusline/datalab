@@ -440,7 +440,13 @@ int byteSwap(int x, int n, int m)
  */
 int conditional(int x, int y, int z)
 {
-    return 42;
+    int i = x | (x << 1);
+    i = i | (i << 2);
+    i = i | (i << 4);
+    i = i | (i << 8);
+    i = i | (i << 16);
+    i = i >> 30 >> 1;
+    return (i & y) | (~i & z);
 }
 
 /*
