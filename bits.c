@@ -555,7 +555,12 @@ int dividePower2(int x, int n)
  */
 int evenBits(void)
 {
-    return 42;
+    int i = 5;
+    i = i | (i << 16);
+    i = i | (i << 8);
+    i = i | (i << 4);
+
+    return i;
 }
 
 /*
@@ -571,7 +576,10 @@ int evenBits(void)
  */
 int ezThreeFourths(int x)
 {
-    return 42;
+    int i = x + (x << 1);
+    int y = i >> 30 >> 1;
+    i = (i + (3 & y)) >> 2;
+    return i;
 }
 
 /*
