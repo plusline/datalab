@@ -629,7 +629,17 @@ int fitsShort(int x)
  */
 unsigned floatAbsVal(unsigned uf)
 {
-    return 42;
+    int temp = uf << 1;
+    temp = temp >> 24;
+    temp = ~temp;
+    int cond = uf << 9;
+    if ((!temp) && (cond))
+        return uf;
+
+    unsigned i = 1 << 30 << 1;
+    i = ~i;
+    i = uf & i;
+    return i;
 }
 
 /*
