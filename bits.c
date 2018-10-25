@@ -529,7 +529,8 @@ int copyLSB(int x)
  */
 int distinctNegation(int x)
 {
-    return 42;
+    int k = x << 1;
+    return !!(k);
 }
 
 /*
