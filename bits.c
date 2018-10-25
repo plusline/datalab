@@ -460,7 +460,52 @@ int conditional(int x, int y, int z)
  */
 int countLeadingZero(int x)
 {
-    return 42;
+    int i = x;
+    i = i | (i >> 16);
+    i = i | (i >> 8);
+    i = i | (i >> 4);
+    i = i | (i >> 2);
+    i = i | (i >> 1);
+    i = ~i;
+
+
+
+    // bitcount---------------------
+    int A = i;
+    int B = i >> 1;
+    int S = A ^ B;  // count even number
+    int C = A & B;  // count even number and shift left one bit
+
+    //*****
+    A = S;
+    B = S >> 2;
+    int S1_1 = A ^ B;
+    int C1_1 = A & B;  // shift one
+
+    A = C;
+    B = C >> 2;
+    int S1_2 = A ^ B;  // shift one
+    int C1_2 = A & B;  // shift two
+
+    //*****
+    int d = 15 + (15 << 16);
+    int dd = d + (d << 8);
+    int k = 1 + (1 << 16);
+    int kk = k + (k << 8);
+    int kkk = kk + (kk << 4);
+
+    int aa1 = S1_1 & kkk;
+    int aa2 = C1_1 & kkk;
+    int aa3 = S1_2 & kkk;
+    int aa4 = C1_2 & kkk;
+    int Sum = aa1 + (aa2 << 1) + (aa3 << 1) + (aa4 << 2);
+    Sum = Sum + (Sum >> 4);
+    Sum = Sum & dd;
+    Sum = Sum + (Sum >> 8);
+
+    Sum = Sum + (Sum >> 16);
+    Sum = Sum & ((31 << 1) + 1);
+    return Sum;
 }
 
 /*
